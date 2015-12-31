@@ -1,3 +1,4 @@
 # Don't include these files
 
-css/normalize.css
+css/.sass-cache/
+css/main.css.map
