@@ -1,5 +1,44 @@
-.container {
-	border: 1px solid red;
-	margin: 0 auto;
-	width: 1000px;
+.slideshow {
+	border: 3px solid gold;
+	margin: 20px 0;
+	overflow-x: hidden;
+	position: relative;
+	white-space: nowrap;
+	width: 800px;
+
+	ul {
+		margin: 0;
+		padding: 0;
+		width: 6400px;
+	}
+
+	li {
+		//display: inline-block;
+		float: left;
+		margin: 0;
+		padding: 0;
+	}
+
+	img {
+		display: block;
+	}
+
+	.slidenav {
+		background-color: rgba(0, 0, 0, 0.3);
+		border: 0;
+		cursor: pointer;
+		height: 300px;
+		outline: 0;
+		position: absolute;
+		width: 50px;
+
+		&.nav-left {
+			left: 0;
+		}
+
+		&.nav-right {
+			right: 0;
+		}
+	}
 }
+

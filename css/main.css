@@ -45,9 +45,41 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
+h1 {
+  font-size: 24px; }
+
 .container {
-  border: 1px solid red;
-  margin: 0 auto;
+  margin: 20px auto;
   width: 1000px; }
+
+.slideshow {
+  border: 3px solid gold;
+  margin: 20px 0;
+  overflow-x: hidden;
+  position: relative;
+  white-space: nowrap;
+  width: 800px; }
+  .slideshow ul {
+    margin: 0;
+    padding: 0;
+    width: 6400px; }
+  .slideshow li {
+    float: left;
+    margin: 0;
+    padding: 0; }
+  .slideshow img {
+    display: block; }
+  .slideshow .slidenav {
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 0;
+    cursor: pointer;
+    height: 300px;
+    outline: 0;
+    position: absolute;
+    width: 50px; }
+    .slideshow .slidenav.nav-left {
+      left: 0; }
+    .slideshow .slidenav.nav-right {
+      right: 0; }
 
 /*# sourceMappingURL=main.css.map */
