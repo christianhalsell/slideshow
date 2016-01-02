@@ -1,5 +1,7 @@
 .slideshow {
 	border: 3px solid gold;
+	box-sizing: content-box;
+	height: 300px;
 	margin: 20px 0;
 	overflow-x: hidden;
 	position: relative;
@@ -9,12 +11,12 @@
 	ul {
 		margin: 0;
 		padding: 0;
-		width: 6400px;
+		position: relative;
 	}
 
 	li {
-		//display: inline-block;
 		float: left;
+		left: 0;
 		margin: 0;
 		padding: 0;
 	}
@@ -24,7 +26,7 @@
 	}
 
 	.slidenav {
-		background-color: rgba(0, 0, 0, 0.3);
+		background-color: rgba(0, 0, 0, 0.6);
 		border: 0;
 		cursor: pointer;
 		height: 300px;
