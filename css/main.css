@@ -61,6 +61,8 @@ h1 {
   position: relative;
   white-space: nowrap;
   width: 800px; }
+  .slideshow .hidden {
+    display: none; }
   .slideshow ul {
     margin: 0;
     padding: 0;
