@@ -1,3 +1,3 @@
 # Slideshow
 
-## A simple slideshow in javaScript
+## A simple slideshow in JavaScript
