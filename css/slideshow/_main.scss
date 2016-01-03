@@ -1,5 +1,5 @@
 .slideshow {
-	border: 3px solid gold;
+	border: 3px solid #000;
 	box-sizing: content-box;
 	height: 300px;
 	margin: 20px 0 0;
@@ -9,7 +9,7 @@
 	width: 800px;
 
 	.disabled {
-		opacity: 0.2;
+		opacity: 0.1;
 	}
 
 	ul {
@@ -86,12 +86,11 @@
 }
 
 .slideshow-wrap {
-	background-color: rgba(0, 0, 0, .6);
-	border: 3px solid gold;
+	background-color: #000;
 	border-top: 0;
-	box-sizing: content-box;
 	color: #fff;
-	padding: 10px 20px;
-	width: 760px;
+	font-size: 13px;
+	padding: 10px 50px;
+	width: 806px;
 }
 
