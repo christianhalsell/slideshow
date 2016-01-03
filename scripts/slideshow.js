@@ -7,6 +7,7 @@ CH.JsSlideshow = (function() {
 		pos = 0,
 		duration = 5000,
 		$slideshow = $('.slideshow'),
+		$slideshowTitle = $('#slideshowTitle'),
 		$navLeft = $('#navLeft'),
 		$navRight = $('#navRight');
 
@@ -47,27 +48,23 @@ CH.JsSlideshow = (function() {
 	};
 
 	var getTitle = function (slide) {
-		var title = $('.slideshow li:nth-child(' + slide + ') img').attr('title');
-		$('#slideshowTitle').html(title);
+		var title = $slideshow.find('li:nth-child(' + slide + ')').find('img').attr('title');
+		$slideshowTitle.html(title);
 	}
 
-	var slideRight = function () {
-		if (!$(this).hasClass('disabled')) {
+	var slide = function (direction) {
+		if (direction === 'right') {
 			slideNumber += 1;
-			animate('right');
-			slideCheck();
-			getTitle(slideNumber);
 		}
-	};
 
-	var slideLeft = function () {
-		if (!$(this).hasClass('disabled')) {
-			slideNumber -= 1;
-			animate('left');
-			slideCheck();
-			getTitle(slideNumber);
+		if (direction === 'left' ) {
+			slideNumber -= 1;			
 		}
-	};
+
+		animate(direction);
+		slideCheck();
+		getTitle(slideNumber);
+	}
 
 	return {
 		init: function() {
@@ -75,8 +72,17 @@ CH.JsSlideshow = (function() {
 			slideCheck();
 			getTitle(slideNumber);
 
-			$navRight.off('click.navR').on('click.navR', slideRight);
-			$navLeft.off('click.navL').on('click.navL', slideLeft);
+			$navRight.off('click.navR').on('click.navR', function () {
+				if (!$(this).hasClass('disabled')) {
+					slide('right');
+				}
+			});
+
+			$navLeft.off('click.navL').on('click.navL', function () {
+				if (!$(this).hasClass('disabled')) {
+					slide('left');
+				}
+			});	
 		}
 	}
 }());
