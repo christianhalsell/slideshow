@@ -5,6 +5,7 @@ CH.JsSlideshow = (function() {
 
 	var slideNumber = 1,
 		pos = 0,
+		duration = 5000,
 		$slideshow = $('.slideshow'),
 		$navLeft = $('#navLeft'),
 		$navRight = $('#navRight');
@@ -33,34 +34,41 @@ CH.JsSlideshow = (function() {
 
 	var slideCheck = function () {
 		if (slideNumber === 1) {
-			$navLeft.addClass('hidden');
+			$navLeft.addClass('disabled');
 		} else {
-			$navLeft.removeClass('hidden');
+			$navLeft.removeClass('disabled');
 		}
 
 		if (slideNumber === slideCount()) {
-			$navRight.addClass('hidden');
+			$navRight.addClass('disabled');
 		} else {
-			$navRight.removeClass('hidden');			
+			$navRight.removeClass('disabled');			
 		}
-	}
+	};
+
+	var slideRight = function () {
+		if (!$(this).hasClass('disabled')) {
+			slideNumber += 1;
+			animate('right');
+			slideCheck();
+		}
+	};
+
+	var slideLeft = function () {
+		if (!$(this).hasClass('disabled')) {
+			slideNumber -= 1;
+			animate('left');
+			slideCheck();
+		}
+	};
 
 	return {
 		init: function() {
 			ulWidth();
 			slideCheck();
 
-			$('.nav-right').on('click', function () {
-				slideNumber += 1;
-				animate('right');
-				slideCheck();
-			});
-
-			$('.nav-left').on('click', function () {
-				slideNumber -= 1;
-				animate('left');
-				slideCheck();
-			});
+			$navRight.off('click.navR').on('click.navR', slideRight);
+			$navLeft.off('click.navL').on('click.navL', slideLeft);
 		}
 	}
 }());

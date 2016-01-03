@@ -61,8 +61,8 @@ h1 {
   position: relative;
   white-space: nowrap;
   width: 800px; }
-  .slideshow .hidden {
-    display: none; }
+  .slideshow .disabled {
+    opacity: 0.2; }
   .slideshow ul {
     margin: 0;
     padding: 0;
@@ -75,9 +75,10 @@ h1 {
   .slideshow img {
     display: block; }
   .slideshow .slidenav {
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.7);
     border: 0;
     cursor: pointer;
+    display: flex;
     height: 300px;
     outline: 0;
     position: absolute;
@@ -86,5 +87,29 @@ h1 {
       left: 0; }
     .slideshow .slidenav.nav-right {
       right: 0; }
+    .slideshow .slidenav .arrow {
+      position: relative;
+      background: #fff; }
+    .slideshow .slidenav .arrow:after {
+      border: solid transparent;
+      border-color: rgba(255, 255, 255, 0);
+      border-width: 20px;
+      content: " ";
+      height: 0;
+      margin-top: -20px;
+      position: absolute;
+      pointer-events: none;
+      top: 50%;
+      width: 0; }
+    .slideshow .slidenav .arrow-right {
+      margin-left: 10px; }
+      .slideshow .slidenav .arrow-right:after {
+        border-left-color: #fff;
+        left: 100%; }
+    .slideshow .slidenav .arrow-left {
+      margin-left: 26px; }
+      .slideshow .slidenav .arrow-left:after {
+        border-right-color: #fff;
+        right: 100%; }
 
 /*# sourceMappingURL=main.css.map */

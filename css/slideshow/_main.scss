@@ -8,8 +8,8 @@
 	white-space: nowrap;
 	width: 800px;
 
-	.hidden {
-		display: none;
+	.disabled {
+		opacity: 0.2;
 	}
 
 	ul {
@@ -30,9 +30,10 @@
 	}
 
 	.slidenav {
-		background-color: rgba(0, 0, 0, 0.6);
+		background-color: rgba(0, 0, 0, 0.7);
 		border: 0;
 		cursor: pointer;
+		display: flex;
 		height: 300px;
 		outline: 0;
 		position: absolute;
@@ -44,6 +45,42 @@
 
 		&.nav-right {
 			right: 0;
+		}
+
+		.arrow {
+			position: relative;
+			background: #fff;
+		}
+
+		.arrow:after {
+			border: solid transparent;
+			border-color: rgba(255, 255, 255, 0);
+			border-width: 20px;
+			content: " ";
+			height: 0;
+			margin-top: -20px;
+			position: absolute;
+			pointer-events: none;
+			top: 50%;
+			width: 0;
+		}
+
+		.arrow-right {
+			margin-left: 10px;
+
+			&:after {
+				border-left-color: #fff;	
+				left: 100%;			
+			}
+		}
+
+		.arrow-left {
+			margin-left: 26px;
+			
+			&:after {
+				border-right-color: #fff;
+				right: 100%;
+			}
 		}
 	}
 }
