@@ -46,11 +46,17 @@ CH.JsSlideshow = (function() {
 		}
 	};
 
+	var getTitle = function (slide) {
+		var title = $('.slideshow li:nth-child(' + slide + ') img').attr('title');
+		$('#slideshowTitle').html(title);
+	}
+
 	var slideRight = function () {
 		if (!$(this).hasClass('disabled')) {
 			slideNumber += 1;
 			animate('right');
 			slideCheck();
+			getTitle(slideNumber);
 		}
 	};
 
@@ -59,6 +65,7 @@ CH.JsSlideshow = (function() {
 			slideNumber -= 1;
 			animate('left');
 			slideCheck();
+			getTitle(slideNumber);
 		}
 	};
 
@@ -66,6 +73,7 @@ CH.JsSlideshow = (function() {
 		init: function() {
 			ulWidth();
 			slideCheck();
+			getTitle(slideNumber);
 
 			$navRight.off('click.navR').on('click.navR', slideRight);
 			$navLeft.off('click.navL').on('click.navL', slideLeft);
