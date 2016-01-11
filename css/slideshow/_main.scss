@@ -21,12 +21,12 @@
 .slideshow {
 	border: 3px solid #000;
 	box-sizing: content-box;
-	height: 0; // height set in JS
+	height: 0;
 	margin: 20px 0 0;
 	overflow-x: hidden;
 	position: relative;
 	white-space: nowrap;
-	width: 0; // width set in JS
+	width: 0;
 
 	.disabled {
 		opacity: 0.1;
