@@ -1,12 +1,32 @@
+.cf {
+	&::before,
+	&::after {
+		content: "";
+		display: table;
+	}
+
+	&::after {
+		clear: both;
+	}
+}
+
+.right {
+	float: right;
+}
+
+.left {
+	float: left;
+}
+
 .slideshow {
 	border: 3px solid #000;
 	box-sizing: content-box;
-	height: 300px;
+	height: 0; // height set in JS
 	margin: 20px 0 0;
 	overflow-x: hidden;
 	position: relative;
 	white-space: nowrap;
-	width: 800px;
+	width: 0; // width set in JS
 
 	.disabled {
 		opacity: 0.1;

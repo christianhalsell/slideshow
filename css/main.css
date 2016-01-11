@@ -53,15 +53,27 @@ h1 {
   font: 12px/1.2 "Verdana", sans-serif;
   width: 1000px; }
 
+.cf::before, .cf::after {
+  content: "";
+  display: table; }
+.cf::after {
+  clear: both; }
+
+.right {
+  float: right; }
+
+.left {
+  float: left; }
+
 .slideshow {
   border: 3px solid #000;
   box-sizing: content-box;
-  height: 300px;
+  height: 0;
   margin: 20px 0 0;
   overflow-x: hidden;
   position: relative;
   white-space: nowrap;
-  width: 800px; }
+  width: 0; }
   .slideshow .disabled {
     opacity: 0.1; }
   .slideshow ul {

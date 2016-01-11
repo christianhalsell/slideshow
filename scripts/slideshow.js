@@ -3,29 +3,29 @@ CH.JsSlideshow = (function() {
 
 	"use strict";
 
-	var slideNumber = 1,
+	var $navLeft = $('#navLeft'),
+		$navRight = $('#navRight'),
 		pos = 0,
-		duration = 5000,
+		slideCount,
+		slideNumber = 1,
 		$slideshow = $('.slideshow'),
 		$slideshowTitle = $('#slideshowTitle'),
-		$navLeft = $('#navLeft'),
-		$navRight = $('#navRight');
+		slideHeight,
+		slideWidth;
 
-	var slideCount = function () {
-		var slideTotal = $slideshow.find('li').length;
-		return slideTotal;
-	};
-
-	// Set width of UL
-	var ulWidth = function () {
-		$slideshow.find('ul').css({ 'width' : 800 * slideCount() });
+	var slideSetup = function () {
+		slideHeight = $slideshow.find('li:nth-child(1)').find('img').height();
+		slideWidth = $slideshow.find('li:nth-child(1)').find('img').width();
+		$slideshow.css({ 'height' : slideHeight, 'width' : slideWidth});
+		slideCount = $slideshow.find('li').length;
+		$slideshow.find('ul').css({ 'width' : slideWidth * slideCount });
 	};
 
 	var animate = function (direction) {
 		if (direction === 'right') {
-			pos -= 800;
+			pos -= slideWidth;
 		} else {
-			pos += 800;
+			pos += slideWidth;
 		}
 
 		$slideshow.find('ul').animate({ // TODO: Make the transition CSS
@@ -33,57 +33,63 @@ CH.JsSlideshow = (function() {
 		}, 1000);
 	};
 
-	var slideCheck = function () {
+	var goToSlide = function (slide) {
+		$navLeft.add($navRight).removeClass('disabled');
+
 		if (slideNumber === 1) {
 			$navLeft.addClass('disabled');
-		} else {
-			$navLeft.removeClass('disabled');
 		}
 
-		if (slideNumber === slideCount()) {
-			$navRight.addClass('disabled');
-		} else {
-			$navRight.removeClass('disabled');			
+		if (slideNumber === slideCount) {
+			$navRight.addClass('disabled');		
 		}
-	};
 
-	var getTitle = function (slide) {
 		var title = $slideshow.find('li:nth-child(' + slide + ')').find('img').attr('title');
 		$slideshowTitle.html(title);
 	}
 
+	var showSlideCount = function () {
+		$('#slideCount').html(slideNumber);
+	};
+
+	var showSlideTotal = function () {
+		$('#slideTotal').html(slideCount);
+	};
+
 	var slide = function (direction) {
 		if (direction === 'right') {
-			slideNumber += 1;
-		}
-
-		if (direction === 'left' ) {
-			slideNumber -= 1;			
+			slideNumber ++;
+		} else {
+			slideNumber --;
 		}
 
 		animate(direction);
-		slideCheck();
-		getTitle(slideNumber);
+		goToSlide(slideNumber);
+		showSlideCount();
+	}
+
+	var init = function() {
+		// ulWidth();
+		slideSetup();
+		goToSlide(slideNumber);
+		showSlideCount();
+		showSlideTotal();
+
+		$navRight.off('click.carousel').on('click.carousel', function () {
+			if (!$(this).hasClass('disabled')) {
+				slide('right');
+			}
+		});
+
+		$navLeft.off('click.carousel').on('click.carousel', function () {
+			if (!$(this).hasClass('disabled')) {
+				slide('left');
+			}
+		});	
 	}
 
 	return {
-		init: function() {
-			ulWidth();
-			slideCheck();
-			getTitle(slideNumber);
-
-			$navRight.off('click.navR').on('click.navR', function () {
-				if (!$(this).hasClass('disabled')) {
-					slide('right');
-				}
-			});
-
-			$navLeft.off('click.navL').on('click.navL', function () {
-				if (!$(this).hasClass('disabled')) {
-					slide('left');
-				}
-			});	
-		}
+		init: init
 	}
 }());
 
