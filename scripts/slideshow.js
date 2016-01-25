@@ -3,7 +3,8 @@ CH.JsSlideshow = (function() {
 
 	"use strict";
 
-	var $navLeft = $('#navLeft'),
+	var $dot = $('.js-dot'),
+		$navLeft = $('#navLeft'),
 		$navRight = $('#navRight'),
 		pos = 0,
 		slideCount,
@@ -13,12 +14,25 @@ CH.JsSlideshow = (function() {
 		slideHeight,
 		slideWidth;
 
+	var dotSelected = function () {
+		$('.js-dot').removeClass('selected');
+		$('.js-dot:nth-child(' + slideNumber + ')').addClass('selected');
+	}
+
 	var slideSetup = function () {
 		slideHeight = $slideshow.find('li:nth-child(1)').find('img').height();
 		slideWidth = $slideshow.find('li:nth-child(1)').find('img').width();
+
 		$slideshow.css({ 'height' : slideHeight, 'width' : slideWidth});
 		slideCount = $slideshow.find('li').length;
 		$slideshow.find('ul').css({ 'width' : slideWidth * slideCount });
+
+		// create the dots for navigation
+		for (var i = 1; i <= slideCount; i++) {
+			$('.dots-wrap').append('<div class="dot js-dot" data-slide="' + i + '"></dot>');
+		}
+
+		dotSelected();
 	};
 
 	var animate = function (direction) {
@@ -64,6 +78,7 @@ CH.JsSlideshow = (function() {
 		}
 
 		animate(direction);
+		dotSelected();
 		goToSlide(slideNumber);
 		showSlideCount();
 	}

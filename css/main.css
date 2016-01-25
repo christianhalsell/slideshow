@@ -128,9 +128,27 @@ h1 {
 .slideshow-wrap {
   background-color: #000;
   border-top: 0;
+  box-sizing: content-box;
   color: #fff;
+  display: flex;
   font-size: 13px;
   padding: 10px 50px;
-  width: 806px; }
+  width: 706px; }
+  .slideshow-wrap > div {
+    flex: 1; }
+  .slideshow-wrap .dots-wrap {
+    padding-top: 2px;
+    text-align: center; }
+    .slideshow-wrap .dots-wrap .dot {
+      background-color: #fff;
+      border-radius: 50%;
+      display: inline-block;
+      margin: 0 2px;
+      height: 10px;
+      width: 10px; }
+      .slideshow-wrap .dots-wrap .dot.selected {
+        background-color: #f00; }
+  .slideshow-wrap .slide-count-wrap {
+    text-align: right; }
 
 /*# sourceMappingURL=main.css.map */
