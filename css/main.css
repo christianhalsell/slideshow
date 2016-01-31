@@ -142,10 +142,13 @@ h1 {
     .slideshow-wrap .dots-wrap .dot {
       background-color: #fff;
       border-radius: 50%;
+      cursor: pointer;
       display: inline-block;
       margin: 0 2px;
       height: 10px;
       width: 10px; }
+      .slideshow-wrap .dots-wrap .dot:hover {
+        background-color: #ccc; }
       .slideshow-wrap .dots-wrap .dot.selected {
         background-color: #f00; }
   .slideshow-wrap .slide-count-wrap {

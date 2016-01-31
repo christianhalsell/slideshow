@@ -103,7 +103,7 @@ CH.JsSlideshow = (function() {
 		});
 
 		$('.dot').on('click', function () {
-			var slidePos = $(this).attr('data-slide');
+			var slidePos = parseInt($(this).attr('data-slide'));
 				pos = ((slidePos - 1) * slideWidth) * -1;
 
 			$slideshow.find('ul').animate({ // TODO: Make the transition CSS
@@ -115,7 +115,7 @@ CH.JsSlideshow = (function() {
 			dotSelected();
 			checkNavState(slideNumber);
 			showSlideCount();
-		})
+		});
 	}
 
 	return {
