@@ -47,17 +47,18 @@ CH.JsSlideshow = (function() {
 		}, 1000);
 	};
 
-	var goToSlide = function (slide) {
+	var checkNavState = function (slide) {
+		// remove disabled states
 		$navLeft.add($navRight).removeClass('disabled');
 
+		// disable nav if at the beginning or end
 		if (slideNumber === 1) {
 			$navLeft.addClass('disabled');
-		}
-
-		if (slideNumber === slideCount) {
+		} else if (slideNumber === slideCount) {
 			$navRight.addClass('disabled');		
 		}
 
+		// find the title of the slide
 		var title = $slideshow.find('li:nth-child(' + slide + ')').find('img').attr('title');
 		$slideshowTitle.html(title);
 	}
@@ -79,14 +80,13 @@ CH.JsSlideshow = (function() {
 
 		animate(direction);
 		dotSelected();
-		goToSlide(slideNumber);
+		checkNavState(slideNumber);
 		showSlideCount();
 	}
 
 	var init = function() {
-		// ulWidth();
 		slideSetup();
-		goToSlide(slideNumber);
+		checkNavState(slideNumber);
 		showSlideCount();
 		showSlideTotal();
 
@@ -100,7 +100,22 @@ CH.JsSlideshow = (function() {
 			if (!$(this).hasClass('disabled')) {
 				slide('left');
 			}
-		});	
+		});
+
+		$('.dot').on('click', function () {
+			var slidePos = $(this).attr('data-slide');
+				pos = ((slidePos - 1) * slideWidth) * -1;
+
+			$slideshow.find('ul').animate({ // TODO: Make the transition CSS
+				left: pos
+			}, 1000);
+
+			slideNumber = slidePos;
+
+			dotSelected();
+			checkNavState(slideNumber);
+			showSlideCount();
+		})
 	}
 
 	return {
